@@ -30,7 +30,7 @@ int		check_size(int argc, char **argv)
 
 	while (argc > 1)
 	{
-		arr[argc - 2] = ft_atoi()argv[argc - 1];
+		arr[argc - 2] = ft_atoi(argv[argc - 1]);
 		if (!(arr[argc - 2] >= MIN_INT && arr[argc - 2] <= MAX_INT))
 			return (0);
 		argc--;
