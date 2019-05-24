@@ -17,29 +17,20 @@ t_stack	*make_stack_a(int argc, char **argv)
 	while (argc > 1)
 	{
 		a = stack_new_elem(a);
-		a.data = (int)argv[argc - 1];
+		a->data = (int)argv[argc - 1];
 		argc--;
 	}
+	return (a);
 }
 
-int		check_data(int argc, char **argv)
+/*t_stack *make_stack_b(void)
 {
-	int		i;
+	t_stack	*b;
 
-	i = 0;
-	while (argc > 1)
-	{
-		while (argv[argc - 1])
-		{
-			if (!(argv[argc - 1][i] >= '0' &&  argv[argc - 1][i] <= '9'))
-				return (0);
-			i++;
-		}
-		i = 0;
-		argc--;
-	}
-	return (1);
-}
+	b = NULL;
+	b = stack_new_elem(b);
+	return (b);
+}*/
 
 void	push_swap(t_stack *a)
 {
