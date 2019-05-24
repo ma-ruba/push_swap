@@ -1,8 +1,13 @@
 # include "push_swap.h"
 
-void	push_swap(t_stack *a)
+void		push_swap(t_stack *a, int argc, char **argv)
 {
+	t_stack	*med;
+	t_stack	*b;
 
+	med = find_mediana(argc, argv,a);
+	b = make_stack_b();
+	main_sort(a, b, med, argc);
 }
 
 char	**one_arg(int *argc, char **argv)

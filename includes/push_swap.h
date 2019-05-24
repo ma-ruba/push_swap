@@ -18,7 +18,7 @@ t_stack				*make_stack_a(int argc, char **argv);
 t_stack				*make_stack_b(void);
 t_stack				*stack_new_elem(t_stack *previous);
 void    			clear_stack(t_stack *stack);
-void				push_swap(t_stack *a);
+void				push_swap(t_stack *a, int argc, char **argv);
 int					check_data(int argc, char **argv);
 int     			check_duplicates(int argc, char **argv);
 int					check_size(int argc, char **argv);
@@ -41,5 +41,8 @@ void				rra(t_stack *a);
 void				rrb(t_stack *b);
 void				rrr(t_stack *a, t_stack *b);
 void    			clean_new_argv(char **new_argv);
+t_stack				*find_mediana(int argc, char **argv, t_stack *stack);
+t_stack				*find_elem(int number, t_stack *stack);
+t_stack				*find_last(t_stack *stack);
 
 #endif
