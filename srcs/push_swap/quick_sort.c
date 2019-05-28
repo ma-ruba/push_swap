@@ -38,7 +38,7 @@ static void quick_sort(int beg, int end, int *arr)
 		quick_sort(left, end, arr);
 }
 
-t_stack		*find_mediana(int argc, char **argv, t_stack *stack)
+t_stack		*find_mediana(int argc, char **argv, t_stack *stack) // need to be recoded
 {
 	int		arr[argc - 2];
 	int		length;

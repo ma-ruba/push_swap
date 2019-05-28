@@ -7,6 +7,8 @@
 
 # define MIN_INT  	-2147483648
 # define MAX_INT  	2147483647
+# define ASCEND		1
+# define DESCEND	0
 
 typedef struct      s_stack
 {
