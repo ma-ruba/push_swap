@@ -1,11 +1,11 @@
 # include "push_swap.h"
 
-void		push_swap(t_stack *a, int argc, char **argv)
+void		push_swap(t_stack *a, int argc)
 {
 	t_stack	*b;
 
 	b = make_stack_b();
-	main_sort(a, b, argc, argv);
+	main_sort(a, b, argc);
 }
 
 char	**one_arg(int *argc, char **argv)
@@ -41,7 +41,7 @@ int		call_push_swap(int argc, char **argv)
 		write(1, "Error\n", 6);
 		return (0);
 	}
-	push_swap(make_stack_a(argc, argv), argc, argv);
+	push_swap(make_stack_a(argc, argv), argc);
 	return (1);
 }
 

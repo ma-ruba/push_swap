@@ -15,7 +15,7 @@ static void		sort_three(t_stack *stack)
 	if (stack->data > stack->prev->data)
 		sa(stack);
 	if (find_last(stack)->data < stack->data)
-		rra(stack);
+		rra(&stack);
 }
 
 static void		sort_two(t_stack *stack)
@@ -45,7 +45,7 @@ void		main_sort(t_stack *a, t_stack *b, int argc)
 		while (--j > 0)
 		{
 			if (a->data >= med->data)
-				ra(a);
+				ra(&a);
 			else
 			{
 				pb(b, a);
@@ -80,7 +80,7 @@ void		main_sort2(t_stack *a, t_stack *b, int *blocks, int i)
 			while (j-- > 0)
 			{
 				if (b->data <= med->data)
-					rb(b);
+					rb(&b);
 				else
 				{
 					pa(a, b);
@@ -90,10 +90,10 @@ void		main_sort2(t_stack *a, t_stack *b, int *blocks, int i)
 			j = blocks[i] - count;
 			blocks[i] = j;
 			while (j-- > 0)
-				rrb(b);
+				rrb(&b);
 		}
 		if (blocks[i] == 3)
-			sort_three_ontop(a, b);
+			sort_three_ontop(a);
 		else if (blocks[i] == 2)
 			sort_two_ontop(a, b);
 	}

@@ -9,57 +9,58 @@ static void	ft_swap(int *a, int *b)
 	*b = c;
 }
 
-static void quick_sort(int beg, int end, int *arr)
-{
-	int		left;
-	int		right;
-	int		piv;
+static int partition (int arr[], int low, int high) 
+{ 
+    int pivot = arr[high];
+    int i = (low - 1);
   
-	left = beg;
-	right = end;
-	piv = arr[(left + right) / 2];
-	while (left <= right)
-	{
-		while (arr[left] < piv)
-			left++;
-		while (arr[right] > piv)
-			right--;
-		if (left <= right)
-		{
-			if(arr[left] != arr[right])
-				ft_swap(&arr[left], &arr[right]);
-			left++;
-			right--;
-		}
-	}
-	if (beg < right && right != end)
-		quick_sort(beg, right, arr);
-	if (end > left && left != beg)
-		quick_sort(left, end, arr);
-}
+    for (int j = low; j <= high- 1; j++) 
+    { 
+        if (arr[j] <= pivot) 
+        { 
+            i++;
+            ft_swap(&arr[i], &arr[j]); 
+        } 
+    } 
+    ft_swap(&arr[i + 1], &arr[high]); 
+    return (i + 1); 
+} 
+
+static void quick_sort(int arr[], int low, int high) 
+{ 
+    if (low < high) 
+    { 
+        int pi = partition(arr, low, high); 
+
+        quick_sort(arr, low, pi - 1); 
+        quick_sort(arr, pi + 1, high); 
+    } 
+} 
 
 t_stack		*find_mediana(t_stack *stack, int nb)
 {
-	int		arr[nb - 1];
+	int		*arr;
 	int		i;
 	t_stack	*copy;
 	int		*tmp;
 
 	i = -1;
 	tmp = (int*)malloc(sizeof(int) * (nb - 1));
+	arr = (int*)malloc(sizeof(int) * (nb - 1));
 	copy = stack;
 	while (++i < nb)
 	{
-		arr[i] = *copy->data;
+		arr[i] = copy->data;
 		copy = copy->prev;
 	}
 	while (--i >= 0)
 		tmp[i] = arr[i];
-	quick_sort(tmp[0], tmp[nb - 1], tmp);
+	quick_sort(tmp, 0, nb - 1);
 	copy = stack;
-	while (*copy->data != tmp[nb/2 - 1])
+	while (copy->data != tmp[nb/2 - 1])
 		copy = copy->prev;
 	free(tmp);
+	free(arr);
 	return (copy);
 }
 

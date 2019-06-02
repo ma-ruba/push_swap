@@ -4,20 +4,20 @@ void    sort_three_ontop(t_stack *b)
 {
 	if (b->data > b->prev->data)
 	{
-		rb(b);
+		rb(&b);
 		if (b->data < b->prev->data)
 			sb(b);
-		rrb(b);
+		rrb(&b);
 		if (b->data < b->prev->data)
 			sb(b);
 	}
 	else
 	{
 		sb(b);
-		rb(b);
+		rb(&b);
 		if (b->data < b->prev->data)
 			sb(b);
-		rrb(b);
+		rrb(&b);
 		if (b->data < b->prev->data)
 			sb(b);
 	}

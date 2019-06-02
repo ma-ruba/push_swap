@@ -12,12 +12,14 @@ t_stack	*stack_new_elem(t_stack *previous)
 t_stack	*make_stack_a(int argc, char **argv)
 {
 	t_stack	*a;
+	int		dat;
 
 	a = NULL;
 	while (argc > 1)
 	{
 		a = stack_new_elem(a);
-		*a->data = ft_atoi(argv[argc - 1]);
+		dat = ft_atoi(argv[argc - 1]);
+		a->data = dat;
 		argc--;
 	}
 	return (a);
