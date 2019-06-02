@@ -12,6 +12,7 @@ void	rotate(t_stack *stack)
 		tmp->prev = stack;
 		stack->prev = NULL;
 	}
+}
 
 void    ra(t_stack *a)
 {

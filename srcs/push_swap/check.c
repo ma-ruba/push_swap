@@ -18,7 +18,7 @@ int		check_data(int argc, char **argv)
 	}
 	if (!check_size(argc, argv))
 		return (0);
-	if (!check_duplicates(argc, argc))
+	if (!check_duplicates(argc, argv))
 		return (0);
 	return (1);
 }

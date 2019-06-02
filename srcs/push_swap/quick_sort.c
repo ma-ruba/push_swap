@@ -38,34 +38,32 @@ static void quick_sort(int beg, int end, int *arr)
 		quick_sort(left, end, arr);
 }
 
-t_stack		*find_mediana(int argc, char **argv, t_stack *stack) // need to be recoded
+t_stack		*find_mediana(t_stack *stack, int nb)
 {
-	int		arr[argc - 2];
-	int		length;
-	int		tmp[argc - 2];
-	int		mediana;
-	t_stack	*med;
+	int		arr[nb - 1];
+	int		i;
+	t_stack	*copy;
+	int		*tmp;
 
-	length = argc - 1;
-	while (argc > 1)
+	i = -1;
+	tmp = (int*)malloc(sizeof(int) * (nb - 1));
+	copy = stack;
+	while (++i < nb)
 	{
-		arr[argc - 2] = ft_atoi(argv[argc - 1]);
-		tmp[argc - 2] = arr[argc - 2];
-		argc--;
+		arr[i] = *copy->data;
+		copy = copy->prev;
 	}
-	quick_sort(tmp[1], tmp[length - 1], tmp);
-	mediana = tmp[length / 2 - 1];
-	while (length > 0)
-	{
-		if (arr[length - 1] == mediana;)
-			break ;
-		length--;
-	}
-	med = find_elem(length, stack);
-	return (med);
+	while (--i >= 0)
+		tmp[i] = arr[i];
+	quick_sort(tmp[0], tmp[nb - 1], tmp);
+	copy = stack;
+	while (*copy->data != tmp[nb/2 - 1])
+		copy = copy->prev;
+	free(tmp);
+	return (copy);
 }
 
-t_stack		*find_elem(int number, t_stack *stack)
+/*t_stack		*find_elem(int number, t_stack *stack)
 {
 	t_stack	*mediana;
 
@@ -78,12 +76,4 @@ t_stack		*find_elem(int number, t_stack *stack)
 	return (mediana);
 }
 
-t_stack 	*find_last(t_stack *stack)
-{
-	t_stack	*last;
-
-	last = stack;
-	while (last->prev)
-		last = last->prev;
-	return (last);
-}
+*/

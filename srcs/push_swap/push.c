@@ -4,7 +4,7 @@ void	push(t_stack **stack1, t_stack **stack2)
 {
 	if (*stack2)
 	{
-		(*stack2)->prev = stack1;
+		(*stack2)->prev = *stack1;
 		*stack1 = *stack2;
 		*stack2 = (*stack2)->prev;
 	}

@@ -2,11 +2,10 @@
 
 void		push_swap(t_stack *a, int argc, char **argv)
 {
-	t_stack	*med;
 	t_stack	*b;
 
 	b = make_stack_b();
-	main_sort(a, b, med, argc);
+	main_sort(a, b, argc, argv);
 }
 
 char	**one_arg(int *argc, char **argv)
@@ -33,22 +32,22 @@ char	**one_arg(int *argc, char **argv)
 	return (new_argv);
 }
 
-int		call_push_swap(int argc, argv)
+int		call_push_swap(int argc, char **argv)
 {
 	if (!check_data(argc, argv))
 	{
-		if (argc = 2)
+		if (argc == 2)
 			clean_new_argv(argv);
 		write(1, "Error\n", 6);
 		return (0);
 	}
-	push_swap(make_stack_a(argc, argv));
+	push_swap(make_stack_a(argc, argv), argc, argv);
 	return (1);
 }
 
 int		main(int argc, char **argv)
 {
-	if (argc = 2)
+	if (argc == 2)
 	{
 		if (!call_push_swap(argc, one_arg(&argc, argv)))
 			return (0);

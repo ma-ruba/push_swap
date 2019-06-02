@@ -24,8 +24,8 @@ void				push_swap(t_stack *a, int argc, char **argv);
 int					check_data(int argc, char **argv);
 int     			check_duplicates(int argc, char **argv);
 int					check_size(int argc, char **argv);
-int					call_push_swap(int argc, argv);
-int					call_cheker(int argc, argv);
+int					call_push_swap(int argc, char **argv);
+int					call_cheker(int argc, char **argv);
 char				**one_arg(int *argc, char **argv);
 void				swap(t_stack *stack);
 void				push(t_stack **stack1, t_stack **stack2);
@@ -34,7 +34,7 @@ void				reverse_rotate(t_stack *stack);
 void				pa(t_stack *a, t_stack *b);
 void				pb(t_stack *b, t_stack *a);
 void    			sa(t_stack *a);
-void   				sb(t_stack *a);
+void   				sb(t_stack *b);
 void    			ss(t_stack *a, t_stack *b);
 void    			ra(t_stack *a);
 void    			rb(t_stack *b);
@@ -43,8 +43,14 @@ void				rra(t_stack *a);
 void				rrb(t_stack *b);
 void				rrr(t_stack *a, t_stack *b);
 void    			clean_new_argv(char **new_argv);
-t_stack				*find_mediana(int argc, char **argv, t_stack *stack);
-t_stack				*find_elem(int number, t_stack *stack);
-t_stack				*find_last(t_stack *stack);
+t_stack				*find_mediana(t_stack *stack, int nb);
+/*t_stack			*find_elem(int number, t_stack *stack);
+t_stack				*find_last(t_stack *stack);*/
+void				main_sort(t_stack *a, t_stack *b, int argc);
+void				main_sort2(t_stack *a, t_stack *b, int *blocks, int i);
+int					check_two(t_stack *stack);
+int					check_three(t_stack *stack);
+void    			sort_three_ontop(t_stack *b);
+void    			sort_two_ontop(t_stack *a, t_stack *b);
 
 #endif

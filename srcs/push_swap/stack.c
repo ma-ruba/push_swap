@@ -17,7 +17,7 @@ t_stack	*make_stack_a(int argc, char **argv)
 	while (argc > 1)
 	{
 		a = stack_new_elem(a);
-		a->data = ft_atoi(argv[argc - 1]);
+		*a->data = ft_atoi(argv[argc - 1]);
 		argc--;
 	}
 	return (a);
