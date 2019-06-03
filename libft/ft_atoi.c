@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		ft_atoi(const char *str1)
+long long		ft_atoi(const char *str1)
 {
 	int			negative;
 	long long	nb;

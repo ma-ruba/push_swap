@@ -3,17 +3,17 @@
 
 void	rotate(t_stack **stack)
 {
-	t_stack	**tmp;
+	t_stack	*tmp;
 	
-	tmp = stack;
+	tmp = *stack;
 	if ((*stack)->prev)
 	{
-		while ((*tmp)->prev)
-			*tmp = (*tmp)->prev;
-		(*tmp)->prev = *stack;
-		*tmp = (*stack)->prev;
+		while (tmp->prev)
+			tmp = tmp->prev;
+		tmp->prev = *stack;
+		tmp = (*stack)->prev;
 		(*stack)->prev = NULL;
-		*stack = *tmp;
+		*stack = tmp;
 	}
 }
 

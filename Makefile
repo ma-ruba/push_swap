@@ -3,7 +3,7 @@ NAME = push_swap
 SRCS = srcs/push_swap/check.c srcs/push_swap/clean.c srcs/push_swap/push_swap.c \
 		srcs/push_swap/push.c srcs/push_swap/quick_sort.c srcs/push_swap/reverse_rotate.c \
 		srcs/push_swap/rotate.c srcs/push_swap/sort.c srcs/push_swap/sort2.c \
-		srcs/push_swap/stack.c srcs/push_swap/swap.c
+		srcs/push_swap/stack.c srcs/push_swap/swap.c srcs/push_swap/print_stack.c
 OBJ = $(SRCS:.c=.o)
 
 CC = gcc
@@ -37,8 +37,8 @@ rmlib:
 	@echo "OK!"
 
 clean: rmlib
-	@echo "Deleting libft object files and libft.a..."
-	@make fclean -C ./libft
+	@echo "Deleting push_swap object files..."
+	@rm -rf $(OBJ)
 	@echo "OK!"
 
 fclean: clean

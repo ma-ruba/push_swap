@@ -3,35 +3,37 @@
 int		check_data(int argc, char **argv)
 {
 	int		i;
+	int		arg;
 
 	i = 0;
+	arg = argc;
 	while (argc > 1)
 	{
 		while (argv[argc - 1][i])
 		{
-			if (!(argv[argc - 1][i] >= '0' &&  argv[argc - 1][i] <= '9'))
+			if (!((argv[argc - 1][i] >= '0' &&  argv[argc - 1][i] <= '9') || argv[argc - 1][i] == '-'))
 				return (0);
 			i++;
 		}
 		i = 0;
 		argc--;
 	}
-	if (!check_size(argc, argv))
+	if (!check_size(arg, argv))
 		return (0);
-	if (!check_duplicates(argc, argv))
+	if (!check_duplicates(arg, argv))
 		return (0);
 	return (1);
 }
 
 int		check_size(int argc, char **argv)
 {
-	int	arr[argc - 2];
+	long long	data;
 
 
 	while (argc > 1)
 	{
-		arr[argc - 2] = ft_atoi(argv[argc - 1]);
-		if (!(arr[argc - 2] >= MIN_INT && arr[argc - 2] <= MAX_INT))
+		data = ft_atoi(argv[argc - 1]);
+		if (!(data >= MIN_INT && data <= MAX_INT))
 			return (0);
 		argc--;
 	}
@@ -45,7 +47,7 @@ int     check_duplicates(int argc, char **argv)
 	i = argc - 2;
 	while (argc > 1)
 	{
-		while (i > 1)
+		while (i > 0)
 		{
             if (ft_strequ(argv[argc - 1], argv[i]))
 				return (0);

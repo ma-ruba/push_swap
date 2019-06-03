@@ -3,9 +3,11 @@
 void		push_swap(t_stack *a, int argc)
 {
 	t_stack	*b;
+	int		remain;
 
+	remain = argc - 1;
 	b = make_stack_b();
-	main_sort(a, b, argc);
+	main_sort(a, b, remain);
 }
 
 char	**one_arg(int *argc, char **argv)

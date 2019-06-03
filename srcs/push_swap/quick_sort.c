@@ -45,8 +45,8 @@ t_stack		*find_mediana(t_stack *stack, int nb)
 	int		*tmp;
 
 	i = -1;
-	tmp = (int*)malloc(sizeof(int) * (nb - 1));
-	arr = (int*)malloc(sizeof(int) * (nb - 1));
+	tmp = (int*)malloc(sizeof(int) * nb);
+	arr = (int*)malloc(sizeof(int) * nb);
 	copy = stack;
 	while (++i < nb)
 	{

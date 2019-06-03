@@ -1,31 +1,34 @@
 # include "push_swap.h"
 
-void    sort_three_ontop(t_stack *b)
+void    sort_three_ontop(t_stack **a, t_stack **b)
 {
-	if (b->data > b->prev->data)
+	if ((*b)->data > (*b)->prev->data)
 	{
-		rb(&b);
-		if (b->data < b->prev->data)
+		rb(b);
+		if ((*b)->data < (*b)->prev->data)
 			sb(b);
-		rrb(&b);
-		if (b->data < b->prev->data)
+		rrb(b);
+		if ((*b)->data < (*b)->prev->data)
 			sb(b);
 	}
 	else
 	{
 		sb(b);
-		rb(&b);
-		if (b->data < b->prev->data)
+		rb(b);
+		if ((*b)->data < (*b)->prev->data)
 			sb(b);
-		rrb(&b);
-		if (b->data < b->prev->data)
+		rrb(b);
+		if ((*b)->data < (*b)->prev->data)
 			sb(b);
 	}
+	pa(a, b);
+	pa(a, b);
+	pa(a, b);
 }
 
-void    sort_two_ontop(t_stack *a, t_stack *b)
+void    sort_two_ontop(t_stack **a, t_stack **b)
 {
-    if (b->data > b->prev->data)
+    if ((*b)->data > (*b)->prev->data)
 		pa(a, b);
 	else
 	{
