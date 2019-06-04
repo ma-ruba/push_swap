@@ -54,4 +54,9 @@ void    			sort_three_ontop(t_stack **b, t_stack **a);
 void    			sort_two_ontop(t_stack **a, t_stack **b);
 void				print_stack(t_stack *stack);
 
+int					call_checker(int argc, char **argv);
+void				do_operations(char *line, t_stack *b, t_stack *a);
+void				checker(t_stack *a);
+void				check_stack(t_stack *a, t_stack *b);
+
 #endif

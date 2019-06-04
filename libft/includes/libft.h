@@ -12,10 +12,13 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define MAX_FD 11000
+# define BUFF_SIZE 10
 
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 # define ABS(n)		((n < 0) ? -(n) : (n))
 
@@ -89,5 +92,7 @@ void				ft_lstpush(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 int					ft_lstremove(
 	t_list **alst, t_list *el, void (*del)(void *, size_t));
+
+int					get_next_line(const int fd, char **line);
 
 #endif
