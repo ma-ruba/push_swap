@@ -17,21 +17,24 @@ void	rotate(t_stack **stack)
 	}
 }
 
-void    ra(t_stack **a)
+void    ra(t_stack **a, int index)
 {
     rotate(a);
-	write(1, "ra\n", 3);
+	if (index == 1)
+		write(1, "ra\n", 3);
 }
 
-void    rb(t_stack **b)
+void    rb(t_stack **b, int index)
 {
     rotate(b);
-	write(1, "rb\n", 3);
+	if (index == 1)
+		write(1, "rb\n", 3);
 }
 
-void    rr(t_stack **a, t_stack **b)
+void    rr(t_stack **a, t_stack **b, int index)
 {
     rotate(a);
     rotate(b);
-	write(1, "rr\n", 3);
+	if (index == 1)
+		write(1, "rr\n", 3);
 }

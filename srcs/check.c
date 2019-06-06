@@ -4,7 +4,7 @@ int		check_data(int argc, char **argv)
 {
 	int		i;
 	int		arg;
-
+	
 	i = 0;
 	arg = argc;
 	while (argc > 1)
@@ -66,17 +66,17 @@ char	**one_arg(int *argc, char **argv)
 	int		count;
 
 	count = 0;
-	tmp = ft_strsplit(argv[2], ' ');
+	tmp = ft_strsplit(argv[1], ' ');
 	while (tmp[count])
 		count++;
 	new_argv = (char**)malloc(sizeof(char*) * (count + 2));
-	new_argv[1] = ft_strdup(argv[1]);
+	new_argv[0] = ft_strdup(argv[0]);
 	*argc = count + 1;
 	new_argv[count + 1] = NULL;
 	count = 1;
-	while (new_argv[count])
+	while (count < *argc)
 	{
-		new_argv[count] = ft_strdup(tmp[count -1]);
+		new_argv[count] = ft_strdup(tmp[count - 1]);
 		count++;
 	}
 	clean_new_argv(tmp);

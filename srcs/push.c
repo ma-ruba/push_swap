@@ -13,14 +13,16 @@ void	push(t_stack **stack1, t_stack **stack2)
 	}
 }
 
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b, int index)
 {
 	push(a, b);
-	write(1, "pa\n", 3);
+	if (index == 1)
+		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack **b, t_stack **a)
+void	pb(t_stack **b, t_stack **a, int index)
 {
 	push(b, a);
-	write(1, "pb\n", 3);
+	if (index == 1)
+		write(1, "pb\n", 3);
 }

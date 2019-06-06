@@ -13,21 +13,24 @@ void	swap(t_stack **stack)
 	}
 }
 
-void    sa(t_stack **a)
+void    sa(t_stack **a, int index)
 {
     swap(a);
-	write(1, "sa\n", 3);
+	if (index == 1)
+		write(1, "sa\n", 3);
 }
 
-void    sb(t_stack **b)
+void    sb(t_stack **b, int index)
 {
     swap(b);
-	write(1, "sb\n", 3);
+	if (index == 1)
+		write(1, "sb\n", 3);
 }
 
-void    ss(t_stack **a, t_stack **b)
+void    ss(t_stack **a, t_stack **b, int index)
 {
     swap(a);
     swap(b);
-	write(1, "ss\n", 3);
+	if (index == 1)
+		write(1, "ss\n", 3);
 }

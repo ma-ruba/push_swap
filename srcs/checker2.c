@@ -2,9 +2,10 @@
 
 static int	b_is_empty(t_stack *b)
 {
-	if (b->prev == NULL)
-		return (1);
-	return (0);
+	//if (b->prev == NULL)
+		//return (1);
+	b = NULL;
+	return (1);
 }
 
 static int	a_is_sorted(t_stack *a)
@@ -12,7 +13,7 @@ static int	a_is_sorted(t_stack *a)
 	t_stack	*copy;
 
 	copy = a;
-	while (copy)
+	while (copy->prev)
 	{
 		if (copy->data > copy->prev->data)
 			return (0);

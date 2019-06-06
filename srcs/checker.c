@@ -7,38 +7,37 @@ void	checker(t_stack *a)
 
 	b = make_stack_b();
 	while (get_next_line(0, &line) == 1)
-		do_operations(line, b, a);
+		do_operations(line, &b, &a);
 	check_stack(a, b);
 	clear_stack(a);
 	free(b);
 }
 
-void	do_operations(char *line, t_stack *b, t_stack *a)
+void	do_operations(char *line, t_stack **b, t_stack **a)
 {
 	if (ft_strequ(line, "sa"))
-		sa(&a);
+		sa(a, 0);
 	else if (ft_strequ(line, "sb"))
-		sb(&b);
+		sb(b, 0);
 	else if (ft_strequ(line, "ra"))
-		ra(&a);
+		ra(a, 0);
 	else if (ft_strequ(line, "rb"))
-		rb(&b);
+		rb(b, 0);
 	else if (ft_strequ(line, "rra"))
-		rra(&a);
+		rra(a, 0);
 	else if (ft_strequ(line, "rrb"))
-		rrb(&b);
+		rrb(b, 0);
 	else if (ft_strequ(line, "pa"))
-		pa(&a, &b);
+		pa(a, b, 0);
 	else if (ft_strequ(line, "pb"))
-		pb(&b, &a);
+		pb(b, a, 0);
+	free(line);
 }
 
 int		call_checker(int argc, char **argv)
 {
 	if (!check_data(argc, argv))
 	{
-		if (argc == 2)
-			clean_new_argv(argv);
 		write(1, "Error\n", 6);
 		return (0);
 	}
@@ -48,10 +47,17 @@ int		call_checker(int argc, char **argv)
 
 int		main(int argc, char **argv)
 {
+char	**new_argv;
+
 	if (argc == 2)
 	{
-		if (!call_checker(argc, one_arg(&argc, argv)))
+		new_argv = one_arg(&argc, argv);
+		if (!call_checker(argc, new_argv))
+		{
+			clean_new_argv(new_argv);
 			return (0);
+		}
+			
 	}
 	else if (argc > 2)
 	{

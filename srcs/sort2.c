@@ -4,38 +4,38 @@ void    sort_three_ontop(t_stack **a, t_stack **b)
 {
 	if ((*b)->data > (*b)->prev->data)
 	{
-		rb(b);
+		rb(b, 1);
 		if ((*b)->data < (*b)->prev->data)
-			sb(b);
-		rrb(b);
+			sb(b, 1);
+		rrb(b, 1);
 		if ((*b)->data < (*b)->prev->data)
-			sb(b);
+			sb(b, 1);
 	}
 	else
 	{
-		sb(b);
-		rb(b);
+		sb(b, 1);
+		rb(b, 1);
 		if ((*b)->data < (*b)->prev->data)
-			sb(b);
-		rrb(b);
+			sb(b, 1);
+		rrb(b, 1);
 		if ((*b)->data < (*b)->prev->data)
-			sb(b);
+			sb(b, 1);
 	}
-	pa(a, b);
-	pa(a, b);
-	pa(a, b);
+	pa(a, b, 1);
+	pa(a, b, 1);
+	pa(a, b, 1);
 }
 
 void    sort_two_ontop(t_stack **a, t_stack **b)
 {
     if ((*b)->data > (*b)->prev->data)
-		pa(a, b);
+		pa(a, b, 1);
 	else
 	{
-		sb(b);
-		pa(a, b);
+		sb(b, 1);
+		pa(a, b, 1);
 	}
-	pa(a, b);
+	pa(a, b, 1);
 }
 
 int			check_two(t_stack *stack)

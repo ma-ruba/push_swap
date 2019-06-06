@@ -1,30 +1,32 @@
 # include "push_swap.h"
 
-static t_stack 	*find_last(t_stack *stack)
+static void		sort_three(t_stack **a)
 {
-	t_stack	*last;
-
-	last = stack;
-	while (last->prev)
-		last = last->prev;
-	return (last);
-}
-
-static void		sort_three(t_stack **stack)
-{
-	t_stack	*last;
-
-	last = find_last(*stack);
-	if ((*stack)->data > (*stack)->prev->data)
-		sa(stack);
-	if (last->data < (*stack)->data)
-		rra(stack);
+	if ((*a)->data < (*a)->prev->data)
+	{
+		ra(a, 1);
+		if ((*a)->data > (*a)->prev->data)
+			sa(a, 1);
+		rra(a, 1);
+		if ((*a)->data > (*a)->prev->data)
+			sa(a, 1);
+	}
+	else
+	{
+		sa(a, 1);
+		ra(a, 1);
+		if ((*a)->data > (*a)->prev->data)
+			sa(a, 1);
+		rra(a, 1);
+		if ((*a)->data > (*a)->prev->data)
+			sa(a, 1);
+	}
 }
 
 static void		sort_two(t_stack **stack)
 {
 	if ((*stack)->data > (*stack)->prev->data)
-		sa(stack);
+		sa(stack, 1);
 }
 
 void		main_sort(t_stack *a, t_stack *b, int remain)
@@ -45,10 +47,10 @@ void		main_sort(t_stack *a, t_stack *b, int remain)
 		while (--j > 0)
 		{
 			if (a->data >= med->data)
-				ra(&a);
+				ra(&a, 1);
 			else
 			{
-				pb(&b, &a);
+				pb(&b, &a, 1);
 				count++;
 			}
 		}
@@ -82,17 +84,17 @@ void		main_sort2(t_stack **a, t_stack **b, int *blocks, int i)
 			while (j-- > 0)
 			{
 				if ((*b)->data <= med->data)
-					rb(b);
+					rb(b, 1);
 				else
 				{
-					pa(a, b);
+					pa(a, b, 1);
 					count++;
 				}
 			}
 			j = blocks[i] - count;
 			blocks[i] = j;
 			while (j-- > 0)
-				rrb(b);
+				rrb(b, 1);
 			count = 0;
 		}
 		if (blocks[i] == 3)
@@ -100,6 +102,6 @@ void		main_sort2(t_stack **a, t_stack **b, int *blocks, int i)
 		else if (blocks[i] == 2)
 			sort_two_ontop(a, b);
 		else
-			pa(a, b);
+			pa(a, b, 1);
 	}
 }
