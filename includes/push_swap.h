@@ -48,12 +48,14 @@ t_stack				*find_mediana(t_stack *stack, int nb);
 t_stack				*find_last(t_stack *stack);*/
 void				main_sort(t_stack *a, t_stack *b, int remain);
 void				main_sort2(t_stack **a, t_stack **b, int *blocks, int i);
+void				sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks);
 int					check_two(t_stack *stack);
 int					check_three(t_stack *stack);
 void    			sort_three_ontop(t_stack **b, t_stack **a);
 void    			sort_two_ontop(t_stack **a, t_stack **b);
+void    			sort_three_ontop_a(t_stack **a);
 void				print_stack(t_stack *stack);
-
+void    			sort_two_ontop_a(t_stack **a);
 int					call_checker(int argc, char **argv);
 void				do_operations(char *line, t_stack **b, t_stack **a);
 void				checker(t_stack *a);

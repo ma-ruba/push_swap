@@ -28,13 +28,9 @@ void    sort_three_ontop(t_stack **a, t_stack **b)
 
 void    sort_two_ontop(t_stack **a, t_stack **b)
 {
-    if ((*b)->data > (*b)->prev->data)
-		pa(a, b, 1);
-	else
-	{
+    if ((*b)->data < (*b)->prev->data)
 		sb(b, 1);
-		pa(a, b, 1);
-	}
+	pa(a, b, 1);
 	pa(a, b, 1);
 }
 

@@ -11,7 +11,7 @@ CH_FILES = checker	checker2
 CH_SRC = $(addprefix $(SRCDIR), $(addsuffix .c,$(CH_FILES)))
 CH_OBJ = $(addprefix $(OBJDIR),$(addsuffix .o,$(CH_FILES)))
 
-PS_FILES = 	sort	sort2 quick_sort	push_swap
+PS_FILES = 	sort	sort2 quick_sort	push_swap	sort3
 PS_SRC = $(addprefix $(SRCDIR), $(addsuffix .c,$(PS_FILES)))
 PS_OBJ = $(addprefix $(OBJDIR),$(addsuffix .o,$(PS_FILES)))
 

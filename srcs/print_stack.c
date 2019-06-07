@@ -7,11 +7,11 @@ void	print_stack(t_stack *stack)
 	t_stack	*copy;
 
 	copy = stack;
-	while (copy)
+	while (copy->prev)
 	{
 		dat = copy->data;
 		printf("%i ", dat);
 		copy = copy->prev;
 	}
-	write(1, "\n", 1);
+	printf("%s", "\n");
 }
