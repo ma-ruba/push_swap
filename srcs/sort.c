@@ -58,12 +58,14 @@ void		main_sort(t_stack *a, t_stack *b, int remain)
 		remain -= count;
 		count = 0;
 	}
+	print_stack(a); 
 	blocks[i] = 0;
 	if (check_three(a))
 		sort_three(&a);
 	else if (check_two(a))
 		sort_two(&a);
-	main_sort2(&a, &b, blocks, i);
+	print_stack(a);
+	main_sort2(&a, &b, blocks, i);           
 	free(blocks);
 }
 
@@ -84,10 +86,11 @@ void		main_sort2(t_stack **a, t_stack **b, int *blocks, int i)
 		{
 			if (index == i)
 			{
-				j = blocks[i - 1];
+				j = blocks[i];
 				while (j-- > 0)
 					rrb(b, 1);
 			}
+			print_stack(*b);
 			med = find_mediana(*b, blocks[i]);
 			j = blocks[i];
 			while (j-- > 0)
@@ -103,24 +106,32 @@ void		main_sort2(t_stack **a, t_stack **b, int *blocks, int i)
 			print_stack(*b);
 			print_stack(*a);
 			sort_stack_a(a, b, count, &blocks[i + 1]);
+			print_stack(*a);
+			print_stack(*b);
 			if (blocks[i + 1] != 0)
-			{
-				i += 2;
-				index = i;
 				break ;
-			}
 			j = blocks[i] - count;
 			blocks[i] = j;
 			while (j-- > 0)
 				rrb(b, 1);
 			count = 0;
 		}
-		if (blocks[i] == 3 && index != i)
-			sort_three_ontop(a, b);
-		else if (blocks[i] == 2 && index != i)
-			sort_two_ontop(a, b);
-		else if (index != i)
-			pa(a, b, 1);
+		if (blocks[i + 1] != 0)
+		{
+			index = i;
+			blocks[i] -= count; 
+			i += 2;
+			count = 0;
+		}
+		else
+		{
+			if (blocks[i] == 3)
+				sort_three_ontop(a, b);
+			else if (blocks[i] == 2)
+				sort_two_ontop(a, b);
+			else if (blocks[i] == 1)
+				pa(a, b, 1);
+		}
 	}
 }
 
@@ -134,7 +145,7 @@ void	sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks)
 	*blocks = 0;
 	while (count > 3)
 	{
-		print_stack(*a);
+		//print_stack(*a);
 		med = find_mediana(*a, count);
 		while (--j > 0)
 		{
@@ -155,6 +166,6 @@ void	sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks)
 		sort_three_ontop_a(a);
 	if (count == 2)
 		sort_three_ontop_a(a);
-	print_stack(*a);
-	print_stack(*b);
+	//print_stack(*a);
+	//print_stack(*b);
 }

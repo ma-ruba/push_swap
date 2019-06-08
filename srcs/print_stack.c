@@ -7,7 +7,7 @@ void	print_stack(t_stack *stack)
 	t_stack	*copy;
 
 	copy = stack;
-	while (copy->prev)
+	while (copy)
 	{
 		dat = copy->data;
 		printf("%i ", dat);

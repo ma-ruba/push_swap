@@ -30,7 +30,6 @@ t_stack *make_stack_b(void)
 	t_stack	*b;
 
 	b = NULL;
-	b = stack_new_elem(b);
 	return (b);
 }
 

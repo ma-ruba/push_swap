@@ -9,7 +9,6 @@ void		push_swap(t_stack *a, int argc)
 	b = make_stack_b();
 	main_sort(a, b, remain);
 	clear_stack(a);
-	free(b);
 }
 
 int		call_push_swap(int argc, char **argv)
