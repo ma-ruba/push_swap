@@ -29,12 +29,12 @@ static void		sort_two(t_stack **stack)
 		sa(stack, 1);
 }
 
-static	void	main_sort_norma(t_stack *a)
+static	void	main_sort_norma(t_stack **a)
 {
-	if (check_three(a))
-		sort_three(&a);
-	else if (check_two(a))
-		sort_two(&a);
+	if (check_three(*a))
+		sort_three(a);
+	else if (check_two(*a))
+		sort_two(a);
 }
 
 void		main_sort(t_stack *a, t_stack *b, int remain, int *blocks)
@@ -61,7 +61,7 @@ void		main_sort(t_stack *a, t_stack *b, int remain, int *blocks)
 		remain -= norm.count;
 	}
 	blocks[norm.i] = 0;
-	main_sort_norma(a);
+	main_sort_norma(&a);  
 	main_sort2(&a, &b, blocks, norm.i);
 	print_stack(a);       
 }
