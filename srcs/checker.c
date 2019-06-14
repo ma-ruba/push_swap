@@ -23,14 +23,20 @@ void	do_operations(char *line, t_stack **b, t_stack **a)
 		ra(a, 0);
 	else if (ft_strequ(line, "rb"))
 		rb(b, 0);
+	else if (ft_strequ(line, "rr"))
+		rr(a, b, 0);	
 	else if (ft_strequ(line, "rra"))
 		rra(a, 0);
 	else if (ft_strequ(line, "rrb"))
 		rrb(b, 0);
+	else if (ft_strequ(line, "rrr"))
+		rrr(a, b, 0);
 	else if (ft_strequ(line, "pa"))
 		pa(a, b, 0);
 	else if (ft_strequ(line, "pb"))
 		pb(b, a, 0);
+	else
+		write(1, "Error\n", 6);
 	free(line);
 }
 

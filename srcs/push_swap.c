@@ -1,14 +1,32 @@
 # include "push_swap.h"
 
+static int	a_is_sorted(t_stack *a)
+{
+	t_stack	*copy;
+
+	copy = a;
+	while (copy->prev)
+	{
+		if (copy->data > copy->prev->data)
+			return (0);
+		copy = copy->prev;
+	}
+	return (1);
+}
+
 void		push_swap(t_stack *a, int argc)
 {
 	t_stack	*b;
 	int		remain;
+	int		*blocks;
 
+	blocks = (int*)ft_memalloc(33);
 	remain = argc - 1;
 	b = make_stack_b();
-	main_sort(a, b, remain);
+	if (!(argc == 2 || a_is_sorted(a)))
+		main_sort(a, b, remain, blocks);
 	clear_stack(a);
+	free(blocks);
 }
 
 int		call_push_swap(int argc, char **argv)

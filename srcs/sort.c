@@ -29,143 +29,105 @@ static void		sort_two(t_stack **stack)
 		sa(stack, 1);
 }
 
-void		main_sort(t_stack *a, t_stack *b, int remain)
+static	void	main_sort_norma(t_stack *a)
 {
-	t_stack	*med;
-	int		count;
-	int		*blocks;
-	int		i;
-	int 	j;	
-
-	i = 0;
-	count = 0;
-	blocks = (int*)malloc(sizeof(int) * 33);
-	while (!(check_three(a) || check_two(a)))
-	{
-		j = remain + 1;
-		med = find_mediana(a, remain);
-		while (--j > 0)
-		{
-			if (a->data >= med->data)
-				ra(&a, 1);
-			else
-			{
-				pb(&b, &a, 1);
-				count++;
-			}
-		}
-		blocks[i++] = count;
-		remain -= count;
-		count = 0;
-	}
-	print_stack(a); 
-	blocks[i] = 0;
 	if (check_three(a))
 		sort_three(&a);
 	else if (check_two(a))
 		sort_two(&a);
-	print_stack(a);
-	main_sort2(&a, &b, blocks, i);           
-	free(blocks);
+}
+
+void		main_sort(t_stack *a, t_stack *b, int remain, int *blocks)
+{
+	t_norma	norm;
+
+	norm.i = 0;
+	while (!(check_three(a) || check_two(a)))
+	{
+		norm.count = 0;
+		norm.j = remain + 1;
+		norm.med = find_mediana(a, remain);
+		while (--(norm.j) > 0)
+		{
+			if (a->data >= norm.med->data)
+				ra(&a, 1);
+			else
+			{
+				pb(&b, &a, 1);
+				(norm.count)++;
+			}
+		}
+		blocks[(norm.i)++] = norm.count;
+		remain -= norm.count;
+	}
+	blocks[norm.i] = 0;
+	main_sort_norma(a);
+	main_sort2(&a, &b, blocks, norm.i);
+	print_stack(a);       
+}
+
+static void	main_sort2_norma(int *blocks, int i, t_stack **a, t_stack **b)
+{
+	if (blocks[i] == 3)
+		sort_three_ontop(a, b);
+	else if (blocks[i] == 2)
+		sort_two_ontop(a, b);
+	else if (blocks[i] == 1)
+		pa(a, b, 1);
+}
+
+static void	main_sort_norma2(t_norma *norm, int *blocks, t_stack **a, t_stack **b)
+{
+	while (*blocks > 3)
+	{
+		norm->med = find_mediana(*b, *blocks);
+		norm->j = *blocks;
+		while ((norm->j)-- > 0)
+		{
+			if ((*b)->data < norm->med->data)
+				rb(b, 1);
+			else
+			{
+				pa(a, b, 1);
+				(norm->count)++;
+			}
+		}
+		norm->j = sort_stack_a(a, b, norm->count, blocks);
+		if (norm->j)
+		{
+			norm->index = norm->i;
+			break ;
+		}
+		norm->j = *blocks - norm->count;
+		*blocks = norm->j;
+		while ((norm->j)-- > 0)
+			rrb(b, 1);
+	}
 }
 
 void		main_sort2(t_stack **a, t_stack **b, int *blocks, int i)
 {
-	t_stack	*med;
-	int		count;
-	int 	j;
-	int		index;
+	t_norma	norm;
 
-	count = 0;
-	index = 34;
+	norm.index = 34;
 	while (--i >= 0)
 	{
-		print_stack(*a);
-		print_stack(*b);
-		while (blocks[i] > 3)
+		norm.count = 0;
+		if (i == norm.index)
 		{
-			if (index == i)
-			{
-				j = blocks[i];
-				while (j-- > 0)
-					rrb(b, 1);
-			}
-			print_stack(*b);
-			med = find_mediana(*b, blocks[i]);
-			j = blocks[i];
-			while (j-- > 0)
-			{
-				if ((*b)->data < med->data)
-					rb(b, 1);
-				else
-				{
-					pa(a, b, 1);
-					count++;
-				}
-			}
-			print_stack(*b);
-			print_stack(*a);
-			sort_stack_a(a, b, count, &blocks[i + 1]);
-			print_stack(*a);
-			print_stack(*b);
-			if (blocks[i + 1] != 0)
-				break ;
-			j = blocks[i] - count;
-			blocks[i] = j;
-			while (j-- > 0)
+			norm.j = blocks[i];
+			while ((norm.j)-- > 0)
 				rrb(b, 1);
-			count = 0;
+			norm.index = 34;
 		}
-		if (blocks[i + 1] != 0)
+		norm.i = i;
+		main_sort_norma2(&norm, &blocks[i], a, b);
+		if (norm.index == i)
 		{
-			index = i;
-			blocks[i] -= count; 
-			i += 2;
-			count = 0;
+			blocks[i] -= norm.count; 
+			i += norm.j + 1;
 		}
 		else
-		{
-			if (blocks[i] == 3)
-				sort_three_ontop(a, b);
-			else if (blocks[i] == 2)
-				sort_two_ontop(a, b);
-			else if (blocks[i] == 1)
-				pa(a, b, 1);
-		}
+			main_sort2_norma(blocks, i, a, b);
 	}
-}
-
-void	sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks)
-{
-	t_stack	*med;
-	int		j;
-	int		i;
-
-	j = count + 1;
-	*blocks = 0;
-	while (count > 3)
-	{
-		//print_stack(*a);
-		med = find_mediana(*a, count);
-		while (--j > 0)
-		{
-			if ((*a)->data >= med->data)
-				ra(a, 1);
-			else
-			{
-				pb(b, a, 1);
-				count--;
-				(*blocks)++;
-			}
-		}
-		i = count + 1;
-		while (--i > 0)
-			rra(a, 1);
-	}
-	if (count == 3)
-		sort_three_ontop_a(a);
-	if (count == 2)
-		sort_three_ontop_a(a);
-	//print_stack(*a);
-	//print_stack(*b);
 }

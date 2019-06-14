@@ -16,6 +16,17 @@ typedef struct      s_stack
 	struct s_stack  *prev;
 }               	t_stack;
 
+typedef struct 		s_norma
+{
+	t_stack			*med;
+	int				k;
+	int				j;
+	int				i;
+	int				count;
+	int				index;
+}					t_norma;
+
+
 t_stack				*make_stack_a(int argc, char **argv);
 t_stack				*make_stack_b(void);
 t_stack				*stack_new_elem(t_stack *previous);
@@ -44,11 +55,9 @@ void				rrb(t_stack **b, int index);
 void				rrr(t_stack **a, t_stack **b, int index);
 void    			clean_new_argv(char **new_argv);
 t_stack				*find_mediana(t_stack *stack, int nb);
-/*t_stack			*find_elem(int number, t_stack *stack);
-t_stack				*find_last(t_stack *stack);*/
-void				main_sort(t_stack *a, t_stack *b, int remain);
+void				main_sort(t_stack *a, t_stack *b, int remain, int *blocks);
 void				main_sort2(t_stack **a, t_stack **b, int *blocks, int i);
-void				sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks);
+int					sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks);
 int					check_two(t_stack *stack);
 int					check_three(t_stack *stack);
 void    			sort_three_ontop(t_stack **b, t_stack **a);
