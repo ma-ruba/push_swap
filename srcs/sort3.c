@@ -29,7 +29,7 @@ void    sort_two_ontop_a(t_stack **a)
 		sa(a, 1);
 }
 
-static void	sort_stack_a2(int count, t_stack **a)
+/*static void	sort_stack_a2(int count, t_stack **a)
 {
 	if (count == 3)
 		sort_three_ontop_a(a);
@@ -64,4 +64,4 @@ int			sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks)
 	}
 	sort_stack_a2(count, a);
 	return (norm.k);
-}
+}*/

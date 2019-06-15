@@ -35,8 +35,12 @@ void	do_operations(char *line, t_stack **b, t_stack **a)
 		pa(a, b, 0);
 	else if (ft_strequ(line, "pb"))
 		pb(b, a, 0);
-	else
+	/*else
+	{
+		free(line);
 		write(1, "Error\n", 6);
+		exit(1);
+	}*/
 	free(line);
 }
 

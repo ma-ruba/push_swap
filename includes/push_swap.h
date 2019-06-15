@@ -55,7 +55,7 @@ void				rrb(t_stack **b, int index);
 void				rrr(t_stack **a, t_stack **b, int index);
 void    			clean_new_argv(char **new_argv);
 t_stack				*find_mediana(t_stack *stack, int nb);
-void				main_sort(t_stack *a, t_stack *b, int remain, int *blocks);
+void				main_sort(t_stack *a, t_stack *b, int remain);
 void				main_sort2(t_stack **a, t_stack **b, int *blocks, int i);
 int					sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks);
 int					check_two(t_stack *stack);
@@ -69,5 +69,6 @@ int					call_checker(int argc, char **argv);
 void				do_operations(char *line, t_stack **b, t_stack **a);
 void				checker(t_stack *a);
 void				check_stack(t_stack *a, t_stack *b);
+int					a_is_sorted(t_stack *a);
 
 #endif

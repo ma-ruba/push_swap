@@ -8,20 +8,6 @@ static int	b_is_empty(t_stack *b)
 	return (1);
 }
 
-static int	a_is_sorted(t_stack *a)
-{
-	t_stack	*copy;
-
-	copy = a;
-	while (copy->prev)
-	{
-		if (copy->data > copy->prev->data)
-			return (0);
-		copy = copy->prev;
-	}
-	return (1);
-}
-
 void		check_stack(t_stack *a, t_stack *b)
 {
 	if(a_is_sorted(a) && b_is_empty(b))

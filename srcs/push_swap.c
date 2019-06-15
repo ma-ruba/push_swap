@@ -1,19 +1,5 @@
 # include "push_swap.h"
 
-static int	a_is_sorted(t_stack *a)
-{
-	t_stack	*copy;
-
-	copy = a;
-	while (copy->prev)
-	{
-		if (copy->data > copy->prev->data)
-			return (0);
-		copy = copy->prev;
-	}
-	return (1);
-}
-
 void		push_swap(t_stack *a, int argc)
 {
 	t_stack	*b;
@@ -24,7 +10,7 @@ void		push_swap(t_stack *a, int argc)
 	remain = argc - 1;
 	b = make_stack_b();
 	if (!(argc == 2 || a_is_sorted(a)))
-		main_sort(a, b, remain, blocks);
+		main_sort(a, b, remain);
 	clear_stack(a);
 	free(blocks);
 }

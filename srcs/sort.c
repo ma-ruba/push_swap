@@ -2,24 +2,12 @@
 
 static void		sort_three(t_stack **a)
 {
-	if ((*a)->data < (*a)->prev->data)
+	while (!a_is_sorted(*a))
 	{
-		ra(a, 1);
 		if ((*a)->data > (*a)->prev->data)
 			sa(a, 1);
-		rra(a, 1);
-		if ((*a)->data > (*a)->prev->data)
-			sa(a, 1);
-	}
-	else
-	{
-		sa(a, 1);
-		ra(a, 1);
-		if ((*a)->data > (*a)->prev->data)
-			sa(a, 1);
-		rra(a, 1);
-		if ((*a)->data > (*a)->prev->data)
-			sa(a, 1);
+		else
+			rra(a, 1);
 	}
 }
 
@@ -29,105 +17,156 @@ static void		sort_two(t_stack **stack)
 		sa(stack, 1);
 }
 
-static	void	main_sort_norma(t_stack **a)
+void		main_sort(t_stack *a, t_stack *b, int remain)
 {
-	if (check_three(*a))
-		sort_three(a);
-	else if (check_two(*a))
-		sort_two(a);
-}
+	t_stack	*med;
+	int		count;
+	int		*blocks;
+	int		i;
+	int 	j;	
 
-void		main_sort(t_stack *a, t_stack *b, int remain, int *blocks)
-{
-	t_norma	norm;
-
-	norm.i = 0;
+	i = 0;
+	count = 0;
+	blocks = (int*)ft_memalloc(33);
 	while (!(check_three(a) || check_two(a)))
 	{
-		norm.count = 0;
-		norm.j = remain + 1;
-		norm.med = find_mediana(a, remain);
-		while (--(norm.j) > 0)
+		j = remain + 1;
+		med = find_mediana(a, remain);
+		while (--j > 0)
 		{
-			if (a->data >= norm.med->data)
+			if (a->data >= med->data)
 				ra(&a, 1);
 			else
 			{
 				pb(&b, &a, 1);
-				(norm.count)++;
+				count++;
 			}
 		}
-		blocks[(norm.i)++] = norm.count;
-		remain -= norm.count;
+		blocks[i++] = count;
+		remain -= count;
+		count = 0;
+		//print_stack(a); 
 	}
-	blocks[norm.i] = 0;
-	main_sort_norma(&a);  
-	main_sort2(&a, &b, blocks, norm.i);
-	print_stack(a);       
-}
-
-static void	main_sort2_norma(int *blocks, int i, t_stack **a, t_stack **b)
-{
-	if (blocks[i] == 3)
-		sort_three_ontop(a, b);
-	else if (blocks[i] == 2)
-		sort_two_ontop(a, b);
-	else if (blocks[i] == 1)
-		pa(a, b, 1);
-}
-
-static void	main_sort_norma2(t_norma *norm, int *blocks, t_stack **a, t_stack **b)
-{
-	while (*blocks > 3)
-	{
-		norm->med = find_mediana(*b, *blocks);
-		norm->j = *blocks;
-		while ((norm->j)-- > 0)
-		{
-			if ((*b)->data < norm->med->data)
-				rb(b, 1);
-			else
-			{
-				pa(a, b, 1);
-				(norm->count)++;
-			}
-		}
-		norm->j = sort_stack_a(a, b, norm->count, blocks);
-		if (norm->j)
-		{
-			norm->index = norm->i;
-			break ;
-		}
-		norm->j = *blocks - norm->count;
-		*blocks = norm->j;
-		while ((norm->j)-- > 0)
-			rrb(b, 1);
-	}
+	//print_stack(a); 
+	blocks[i] = 0;
+	if (check_three(a))
+		sort_three(&a);
+	else if (check_two(a))
+		sort_two(&a);
+	//print_stack(a);
+	main_sort2(&a, &b, blocks, i);
+	//print_stack(a);       
+	free(blocks);
 }
 
 void		main_sort2(t_stack **a, t_stack **b, int *blocks, int i)
 {
-	t_norma	norm;
+	t_stack	*med;
+	int		count;
+	int 	j;
+	int		*index;
+	int		k;
 
-	norm.index = 34;
+	count = 0;
+	k = -1;
+	index = ft_memalloc2(10, 34);
 	while (--i >= 0)
 	{
-		norm.count = 0;
-		if (i == norm.index)
+		//printf("%i\n", blocks[i]);
+		//printf("%i\n", blocks[i + 1]);
+		//print_stack(*a);
+		//print_stack(*b);
+		if (i == index[k])
 		{
-			norm.j = blocks[i];
-			while ((norm.j)-- > 0)
+			j = blocks[i];
+			while (j-- > 0)
 				rrb(b, 1);
-			norm.index = 34;
+			index[k--] = 34;
 		}
-		norm.i = i;
-		main_sort_norma2(&norm, &blocks[i], a, b);
-		if (norm.index == i)
+		//print_stack(*b);
+		while (blocks[i] > 3)
 		{
-			blocks[i] -= norm.count; 
-			i += norm.j + 1;
+			med = find_mediana(*b, blocks[i]);
+			j = blocks[i];
+			while (j-- > 0)
+			{
+				if ((*b)->data < med->data)
+					rb(b, 1);
+				else
+				{
+					pa(a, b, 1);
+					count++;
+				}
+			}
+			//print_stack(*b);
+			//print_stack(*a);
+			j = sort_stack_a(a, b, count, &blocks[i]);
+			if (j)
+			{
+				index[++k] = i;
+				break ;
+			}
+			//print_stack(*a);
+			//print_stack(*b); 
+			j = blocks[i] - count;
+			blocks[i] = j;
+			while (j-- > 0)
+				rrb(b, 1);
+			count = 0;
+		}
+		if (index[k] == i)
+		{
+			blocks[i] -= count; 
+			i += j + 1;
+			count = 0;
 		}
 		else
-			main_sort2_norma(blocks, i, a, b);
+		{
+			if (blocks[i] == 3)
+				sort_three_ontop(a, b);
+			else if (blocks[i] == 2)
+				sort_two_ontop(a, b);
+			else if (blocks[i] == 1)
+				pa(a, b, 1);
+		}
 	}
+}
+
+int	sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks)
+{
+	t_stack	*med;
+	int		j;
+	int		k;
+
+	k = 0;
+	while (count > 3)
+	{
+		j = count + 1;
+		//print_stack(*a);
+		k++;
+		blocks[k] = 0;
+		med = find_mediana(*a, count);
+		while (--j > 0)
+		{
+			if ((*a)->data >= med->data)
+				ra(a, 1);
+			else
+			{
+				pb(b, a, 1);
+				count--;
+				(blocks[k])++;
+				//printf("%i\n", blocks[k]);
+			}
+		}
+		j = count + 1;
+		while (--j > 0)
+			rra(a, 1);
+	}
+	if (count == 3)
+		sort_three_ontop_a(a);
+	if (count == 2)
+		sort_three_ontop_a(a);
+	return (k);
+	//print_stack(*a);
+	//print_stack(*b);
 }

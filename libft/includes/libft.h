@@ -60,6 +60,7 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 
 void				*ft_memalloc(size_t size);
+void				*ft_memalloc2(size_t size, int res);
 void				ft_memdel(void **ap);
 char				*ft_strnew(size_t size);
 void				ft_strdel(char **as);

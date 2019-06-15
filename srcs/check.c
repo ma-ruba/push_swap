@@ -82,3 +82,17 @@ char	**one_arg(int *argc, char **argv)
 	clean_new_argv(tmp);
 	return (new_argv);
 }
+
+int	a_is_sorted(t_stack *a)
+{
+	t_stack	*copy;
+
+	copy = a;
+	while (copy->prev)
+	{
+		if (copy->data > copy->prev->data)
+			return (0);
+		copy = copy->prev;
+	}
+	return (1);
+}
