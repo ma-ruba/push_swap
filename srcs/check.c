@@ -1,17 +1,30 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bconwy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 19:33:55 by bconwy            #+#    #+#             */
+/*   Updated: 2019/06/15 19:33:57 by bconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int		check_data(int argc, char **argv)
+#include "push_swap.h"
+
+int				check_data(int argc, char **argv)
 {
-	int		i;
-	int		arg;
-	
+	int			i;
+	int			arg;
+
 	i = 0;
 	arg = argc;
 	while (argc > 1)
 	{
 		while (argv[argc - 1][i])
 		{
-			if (!((argv[argc - 1][i] >= '0' &&  argv[argc - 1][i] <= '9') || argv[argc - 1][i] == '-'))
+			if (!((argv[argc - 1][i] >= '0' &&  argv[argc - 1][i] <= '9')
+				|| argv[argc - 1][i] == '-'))
 				return (0);
 			i++;
 		}
@@ -25,10 +38,9 @@ int		check_data(int argc, char **argv)
 	return (1);
 }
 
-int		check_size(int argc, char **argv)
+int				check_size(int argc, char **argv)
 {
 	long long	data;
-
 
 	while (argc > 1)
 	{
@@ -40,16 +52,16 @@ int		check_size(int argc, char **argv)
 	return (1);
 }
 
-int     check_duplicates(int argc, char **argv)
+int				check_duplicates(int argc, char **argv)
 {
-    int		i;
+	int			i;
 
 	i = argc - 2;
 	while (argc > 1)
 	{
 		while (i > 0)
 		{
-            if (ft_strequ(argv[argc - 1], argv[i]))
+			if (ft_strequ(argv[argc - 1], argv[i]))
 				return (0);
 			i--;
 		}
@@ -59,11 +71,11 @@ int     check_duplicates(int argc, char **argv)
 	return (1);
 }
 
-char	**one_arg(int *argc, char **argv)
+char			**one_arg(int *argc, char **argv)
 {
-	char	**new_argv;
-	char	**tmp;
-	int		count;
+	char		**new_argv;
+	char		**tmp;
+	int			count;
 
 	count = 0;
 	tmp = ft_strsplit(argv[1], ' ');
@@ -83,9 +95,9 @@ char	**one_arg(int *argc, char **argv)
 	return (new_argv);
 }
 
-int	a_is_sorted(t_stack *a)
+int				a_is_sorted(t_stack *a)
 {
-	t_stack	*copy;
+	t_stack		*copy;
 
 	copy = a;
 	while (copy->prev)

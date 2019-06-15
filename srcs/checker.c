@@ -1,6 +1,18 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bconwy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 19:34:08 by bconwy            #+#    #+#             */
+/*   Updated: 2019/06/15 19:34:10 by bconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	checker(t_stack *a)
+#include "push_swap.h"
+
+void		checker(t_stack *a)
 {
 	char	*line;
 	t_stack	*b;
@@ -13,7 +25,14 @@ void	checker(t_stack *a)
 	free(b);
 }
 
-void	do_operations(char *line, t_stack **b, t_stack **a)
+static void	put_error(char *line)
+{
+	write(1, "Error\n", 6);
+	free(line);
+	exit(1);
+}
+
+void		do_operations(char *line, t_stack **b, t_stack **a)
 {
 	if (ft_strequ(line, "sa"))
 		sa(a, 0);
@@ -24,7 +43,7 @@ void	do_operations(char *line, t_stack **b, t_stack **a)
 	else if (ft_strequ(line, "rb"))
 		rb(b, 0);
 	else if (ft_strequ(line, "rr"))
-		rr(a, b, 0);	
+		rr(a, b, 0);
 	else if (ft_strequ(line, "rra"))
 		rra(a, 0);
 	else if (ft_strequ(line, "rrb"))
@@ -35,16 +54,12 @@ void	do_operations(char *line, t_stack **b, t_stack **a)
 		pa(a, b, 0);
 	else if (ft_strequ(line, "pb"))
 		pb(b, a, 0);
-	/*else
-	{
-		free(line);
-		write(1, "Error\n", 6);
-		exit(1);
-	}*/
+	else
+		put_error(line);
 	free(line);
 }
 
-int		call_checker(int argc, char **argv)
+int			call_checker(int argc, char **argv)
 {
 	if (!check_data(argc, argv))
 	{
@@ -55,9 +70,9 @@ int		call_checker(int argc, char **argv)
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-char	**new_argv;
+	char	**new_argv;
 
 	if (argc == 2)
 	{
@@ -67,7 +82,6 @@ char	**new_argv;
 			clean_new_argv(new_argv);
 			return (0);
 		}
-			
 	}
 	else if (argc > 2)
 	{

@@ -1,6 +1,18 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort2.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bconwy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 19:32:43 by bconwy            #+#    #+#             */
+/*   Updated: 2019/06/15 19:32:46 by bconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void    sort_three_ontop(t_stack **a, t_stack **b)
+#include "push_swap.h"
+
+void		sort_three_ontop(t_stack **a, t_stack **b)
 {
 	if ((*b)->data > (*b)->prev->data)
 	{
@@ -26,9 +38,9 @@ void    sort_three_ontop(t_stack **a, t_stack **b)
 	pa(a, b, 1);
 }
 
-void    sort_two_ontop(t_stack **a, t_stack **b)
+void		sort_two_ontop(t_stack **a, t_stack **b)
 {
-    if ((*b)->data < (*b)->prev->data)
+	if ((*b)->data < (*b)->prev->data)
 		sb(b, 1);
 	pa(a, b, 1);
 	pa(a, b, 1);

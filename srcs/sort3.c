@@ -1,6 +1,18 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort3.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bconwy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 19:32:57 by bconwy            #+#    #+#             */
+/*   Updated: 2019/06/15 19:33:01 by bconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void    sort_three_ontop_a(t_stack **a)
+#include "push_swap.h"
+
+void		sort_three_ontop_a(t_stack **a)
 {
 	if ((*a)->data < (*a)->prev->data)
 	{
@@ -23,13 +35,13 @@ void    sort_three_ontop_a(t_stack **a)
 	}
 }
 
-void    sort_two_ontop_a(t_stack **a)
+void		sort_two_ontop_a(t_stack **a)
 {
-    if ((*a)->data > (*a)->prev->data)
+	if ((*a)->data > (*a)->prev->data)
 		sa(a, 1);
 }
 
-/*static void	sort_stack_a2(int count, t_stack **a)
+static void	sort_stack_a2(int count, t_stack **a)
 {
 	if (count == 3)
 		sort_three_ontop_a(a);
@@ -64,4 +76,4 @@ int			sort_stack_a(t_stack **a, t_stack **b, int count, int *blocks)
 	}
 	sort_stack_a2(count, a);
 	return (norm.k);
-}*/
+}

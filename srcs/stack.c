@@ -1,6 +1,18 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bconwy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 19:35:46 by bconwy            #+#    #+#             */
+/*   Updated: 2019/06/15 19:35:48 by bconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_stack	*stack_new_elem(t_stack *previous)
+#include "push_swap.h"
+
+t_stack		*stack_new_elem(t_stack *previous)
 {
 	t_stack	*new;
 
@@ -9,7 +21,7 @@ t_stack	*stack_new_elem(t_stack *previous)
 	return (new);
 }
 
-t_stack	*make_stack_a(int argc, char **argv)
+t_stack		*make_stack_a(int argc, char **argv)
 {
 	t_stack	*a;
 	int		dat;
@@ -25,7 +37,7 @@ t_stack	*make_stack_a(int argc, char **argv)
 	return (a);
 }
 
-t_stack *make_stack_b(void)
+t_stack		*make_stack_b(void)
 {
 	t_stack	*b;
 
@@ -33,7 +45,7 @@ t_stack *make_stack_b(void)
 	return (b);
 }
 
-void    clear_stack(t_stack *stack) // make sure everything is freed
+void		clear_stack(t_stack *stack) // make sure everything is freed
 {
 	t_stack	*tmp;
 

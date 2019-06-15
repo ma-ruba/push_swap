@@ -1,4 +1,16 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bconwy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 19:35:08 by bconwy            #+#    #+#             */
+/*   Updated: 2019/06/15 19:35:09 by bconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 
 static void	ft_swap(int *a, int *b)
 {
@@ -9,33 +21,39 @@ static void	ft_swap(int *a, int *b)
 	*b = c;
 }
 
-static int partition (int arr[], int low, int high) 
-{ 
-    int pivot = arr[high];
-    int i = (low - 1);
-  
-    for (int j = low; j <= high- 1; j++) 
-    { 
-        if (arr[j] <= pivot) 
-        { 
-            i++;
-            ft_swap(&arr[i], &arr[j]); 
-        } 
-    } 
-    ft_swap(&arr[i + 1], &arr[high]); 
-    return (i + 1); 
-} 
+static int	partition(int arr[], int low, int high)
+{
+	int		pivot;
+	int		i;
+	int		j;
 
-static void quick_sort(int arr[], int low, int high) 
-{ 
-    if (low < high) 
-    { 
-        int pi = partition(arr, low, high); 
+	i = (low - 1);
+	pivot = arr[high];
+	j = low;
+	if (j <= high - 1)
+	{
+		if (arr[j] <= pivot)
+		{
+			i++;
+			ft_swap(&arr[i], &arr[j]);
+		}
+		j++;
+	}
+	ft_swap(&arr[i + 1], &arr[high]);
+	return (i + 1);
+}
 
-        quick_sort(arr, low, pi - 1); 
-        quick_sort(arr, pi + 1, high); 
-    } 
-} 
+static void	quick_sort(int arr[], int low, int high)
+{
+	int		pi;
+
+	if (low < high)
+	{
+		pi = partition(arr, low, high);
+		quick_sort(arr, low, pi - 1);
+		quick_sort(arr, pi + 1, high);
+	}
+}
 
 t_stack		*find_mediana(t_stack *stack, int nb)
 {
@@ -63,18 +81,3 @@ t_stack		*find_mediana(t_stack *stack, int nb)
 	free(arr);
 	return (copy);
 }
-
-/*t_stack		*find_elem(int number, t_stack *stack)
-{
-	t_stack	*mediana;
-
-	mediana = stack;
-	while (number > 0)
-	{
-		mediana = mediana->prev;
-		number--;
-	}
-	return (mediana);
-}
-
-*/

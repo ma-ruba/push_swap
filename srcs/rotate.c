@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bconwy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 19:35:34 by bconwy            #+#    #+#             */
+/*   Updated: 2019/06/15 19:35:36 by bconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 void	rotate(t_stack **stack)
 {
 	t_stack	*tmp;
-	
+
 	tmp = *stack;
 	if ((*stack)->prev)
 	{
@@ -17,24 +28,24 @@ void	rotate(t_stack **stack)
 	}
 }
 
-void    ra(t_stack **a, int index)
+void	ra(t_stack **a, int index)
 {
-    rotate(a);
+	rotate(a);
 	if (index == 1)
 		write(1, "ra\n", 3);
 }
 
-void    rb(t_stack **b, int index)
+void	rb(t_stack **b, int index)
 {
-    rotate(b);
+	rotate(b);
 	if (index == 1)
 		write(1, "rb\n", 3);
 }
 
-void    rr(t_stack **a, t_stack **b, int index)
+void	rr(t_stack **a, t_stack **b, int index)
 {
-    rotate(a);
-    rotate(b);
+	rotate(a);
+	rotate(b);
 	if (index == 1)
 		write(1, "rr\n", 3);
 }

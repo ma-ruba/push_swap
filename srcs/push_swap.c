@@ -1,4 +1,16 @@
-# include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bconwy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 19:33:24 by bconwy            #+#    #+#             */
+/*   Updated: 2019/06/15 19:33:27 by bconwy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 
 void		push_swap(t_stack *a, int argc)
 {
@@ -10,12 +22,12 @@ void		push_swap(t_stack *a, int argc)
 	remain = argc - 1;
 	b = make_stack_b();
 	if (!(argc == 2 || a_is_sorted(a)))
-		main_sort(a, b, remain);
+		main_sort(a, b, remain, blocks);
 	clear_stack(a);
 	free(blocks);
 }
 
-int		call_push_swap(int argc, char **argv)
+int			call_push_swap(int argc, char **argv)
 {
 	if (!check_data(argc, argv))
 	{
@@ -26,11 +38,10 @@ int		call_push_swap(int argc, char **argv)
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	char	**new_argv;
 
-	
 	if (argc == 2)
 	{
 		new_argv = one_arg(&argc, argv);
