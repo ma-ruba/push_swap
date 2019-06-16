@@ -63,5 +63,4 @@ void			main_sort(t_stack *a, t_stack *b, int remain, int *blocks)
 	blocks[norm.i] = 0;
 	main_sort_norma(&a);
 	main_sort2(&a, &b, blocks, norm.i);
-	print_stack(a);
 }

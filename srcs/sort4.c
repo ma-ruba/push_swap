@@ -57,8 +57,7 @@ void		main_sort2(t_stack **a, t_stack **b, int *blocks, int i)
 	t_norma	norm;
 
 	norm.index = ft_memalloc2(10, 34);
-	norm.k = -1;
-	//norm.index[norm.k] = 34;
+	norm.k = 0;
 	while (--i >= 0)
 	{
 		norm.count = 0;

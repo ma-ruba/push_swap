@@ -30,7 +30,7 @@ static int	partition(int arr[], int low, int high)
 	i = (low - 1);
 	pivot = arr[high];
 	j = low;
-	if (j <= high - 1)
+	while (j <= high - 1)
 	{
 		if (arr[j] <= pivot)
 		{
